@@ -99,20 +99,3 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-
-
-
-DELIMITER $$
-CREATE DEFINER=`root`@`localhost` FUNCTION `short_text`(`v_id` INT(11)) RETURNS varchar(200) CHARSET utf8mb4
-    DETERMINISTIC
-BEGIN
-SET @t /*text*/ := (SELECT SUBSTRING(`text`, 1, 201) FROM posts WHERE id = v_id);
-SET @p /*lastPart*/ := (SELECT SUBSTRING_INDEX(@t, ' ', -1));
-SET @tl /*textLength*/ := CHAR_LENGTH(@t);
-SET @pl /*partLength*/ := CHAR_LENGTH(@p);
-SET @s /*short*/ := (SElECT LEFT(@t, (@tl - @pl)));
-RETURN TRIM(TRAILING ',' FROM TRIM(@s));
--- RETURN @s;
-END$$
-DELIMITER ;
