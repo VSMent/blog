@@ -8,6 +8,15 @@
 		src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+  if (typeof jQuery == 'undefined')
+  {
+     document.write(unescape("%3Cscript src='/Src/Js/jquery-3.3.1.min.js' %3E%3C/script%3E"));
+  }
+  </script>
+
+
 <?php if ($_GET['url'] == 'page') {?>
   <script src="/Src/Js/index.js"></script>
 <?php } else if ($_GET['url'] == 'post') {?>

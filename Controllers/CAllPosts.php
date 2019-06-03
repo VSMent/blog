@@ -6,14 +6,8 @@ class CAllPosts extends Controller
     {
         $postsAmount = MPosts::getPostsAmount();
         $maxPage = ceil($postsAmount/5);
-        if (!intval($page)) {
+        if (!intval($page) || $page < 0 || $page > $maxPage) {
             header("Location: ".Globals::$host."/page/1");
-            exit();
-        } else if ($page < 0) {
-            header("Location: ".Globals::$host."/page/1");
-            exit();
-        } else if ($page > $maxPage) {
-            header("Location: ".Globals::$host."/page/$maxPage");
             exit();
         } else {
             $realPage = $page-1;
