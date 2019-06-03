@@ -56,8 +56,7 @@ class CNewPost extends Controller
                         echo "Sorry, there was an error uploading your file.<br>";
                     }
                 }
-            } 
-            if ($uploadOk == 0) {
+            } else {
                 $target_file = "default.png";
             }
             if(isset($uploadOk) && $uploadOk == 1){
